@@ -10,3 +10,10 @@ CREATE TABLE tar_tarefas
     tar_data_expiracao DATE NOT NULL,
     tar_concluida BIT DEFAULT FALSE
 );
+
+CREATE TABLE usr_usuarios
+(
+	usr_id INT PRIMARY KEY AUTO_INCREMENT,
+    usr_email VARCHAR(100) NOT NULL,
+    usr_senha VARCHAR(100) NOT NULL
+);
