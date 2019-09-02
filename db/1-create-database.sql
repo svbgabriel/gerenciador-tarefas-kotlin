@@ -17,3 +17,7 @@ CREATE TABLE usr_usuarios
     usr_email VARCHAR(100) NOT NULL,
     usr_senha VARCHAR(100) NOT NULL
 );
+
+ALTER TABLE tar_tarefas ADD COLUMN usr_id INT NOT NULL;
+
+ALTER TABLE tar_tarefas ADD CONSTRAINT fk_tar_tarefas_usr_usuarios FOREIGN KEY (usr_id) REFERENCES usr_usuarios(usr_id);
