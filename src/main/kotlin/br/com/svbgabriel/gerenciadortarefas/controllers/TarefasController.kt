@@ -40,15 +40,11 @@ class TarefasController(private val repositoryTarefa: RepositoryTarefa, private 
 	@PostMapping("/inserir")
 	fun inserir(@Valid tarefa: Tarefa, result: BindingResult, request: HttpServletRequest): ModelAndView {
 		val mv = ModelAndView()
-		if (tarefa.dataExpiracao == null) {
-			result.rejectValue("dataExpiracao", "tarefa.dataExpiracaoVazia", "A data de expiração é obrigatória.")
-		} else {
-			if (tarefa.dataExpiracao.before(Date())) {
-				result.rejectValue(
-					"dataExpiracao", "tarefa.dataExpiracaoInvalida",
-					"A data de expiração não pode ser anterior a data atual."
-				)
-			}
+		if (tarefa.dataExpiracao.before(Date())) {
+			result.rejectValue(
+				"dataExpiracao", "tarefa.dataExpiracaoInvalida",
+				"A data de expiração não pode ser anterior a data atual."
+			)
 		}
 		if (result.hasErrors()) {
 			mv.setViewName("tarefas/inserir")
@@ -75,15 +71,11 @@ class TarefasController(private val repositoryTarefa: RepositoryTarefa, private 
 	@PostMapping("/alterar")
 	fun alterar(@Valid tarefa: Tarefa, result: BindingResult): ModelAndView {
 		val mv = ModelAndView()
-		if (tarefa.dataExpiracao == null) {
-			result.rejectValue("dataExpiracao", "tarefa.dataExpiracaoVazia", "A data de expiração é obrigatória.")
-		} else {
-			if (tarefa.dataExpiracao.before(Date())) {
-				result.rejectValue(
-					"dataExpiracao", "tarefa.dataExpiracaoInvalida",
-					"A data de expiração não pode ser anterior a data atual."
-				)
-			}
+		if (tarefa.dataExpiracao.before(Date())) {
+			result.rejectValue(
+				"dataExpiracao", "tarefa.dataExpiracaoInvalida",
+				"A data de expiração não pode ser anterior a data atual."
+			)
 		}
 		if (result.hasErrors()) {
 			mv.setViewName("tarefas/alterar")
